@@ -11,40 +11,59 @@ function Home() {
   const videoARef = useRef(null);
   const videoBRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(0);
-  const nextIndex = useRef(1);
-  const transitionStarted = useRef(false);
+  const currentIdx = useRef(0);
 
-  // Initialize: videoA plays hero-1, videoB preloads hero-2
-  useEffect(() => {
-    if (videoBRef.current) {
-      videoBRef.current.src = heroVideos[1];
-      videoBRef.current.load();
-    }
-  }, [heroVideos]);
-
-  // Poll timeupdate to start crossfade 1s before video ends
-  const handleTimeUpdate = useCallback((which) => {
-    const current = which === 'A' ? videoARef.current : videoBRef.current;
-    if (!current || transitionStarted.current) return;
-    const remaining = current.duration - current.currentTime;
-    if (remaining <= 1.2 && remaining > 0) {
-      transitionStarted.current = true;
-      const next = which === 'A' ? videoBRef.current : videoARef.current;
-      if (next) next.play();
-      setActiveVideo((prev) => (prev === 0 ? 1 : 0));
-    }
+  // Seek video to a random position (leaving room for 3s of playback)
+  const seekRandom = useCallback((video) => {
+    if (!video || !video.duration) return;
+    const maxStart = Math.max(0, video.duration - 4);
+    video.currentTime = Math.random() * maxStart;
   }, []);
 
-  const handleVideoEnded = useCallback((which) => {
-    transitionStarted.current = false;
-    // Preload the next clip into the video that just finished
-    nextIndex.current = (nextIndex.current + 1) % heroVideos.length;
-    const endedVideo = which === 'A' ? videoARef.current : videoBRef.current;
-    if (endedVideo) {
-      endedVideo.src = heroVideos[nextIndex.current];
-      endedVideo.load();
-    }
-  }, [heroVideos]);
+  // Set up both videos on mount
+  useEffect(() => {
+    const vA = videoARef.current;
+    const vB = videoBRef.current;
+    if (vA) { vA.src = heroVideos[0]; vA.load(); }
+    if (vB) { vB.src = heroVideos[1]; vB.load(); }
+
+    const handleCanPlayA = () => { seekRandom(vA); vA.play(); };
+    const handleCanPlayB = () => { seekRandom(vB); };
+    if (vA) vA.addEventListener('canplay', handleCanPlayA, { once: true });
+    if (vB) vB.addEventListener('canplay', handleCanPlayB, { once: true });
+
+    return () => {
+      if (vA) vA.removeEventListener('canplay', handleCanPlayA);
+      if (vB) vB.removeEventListener('canplay', handleCanPlayB);
+    };
+  }, [heroVideos, seekRandom]);
+
+  // Timer: every 3s, crossfade to the other video
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveVideo((prev) => {
+        const next = prev === 0 ? 1 : 0;
+        const nextVideo = next === 0 ? videoARef.current : videoBRef.current;
+        const prevVideo = prev === 0 ? videoARef.current : videoBRef.current;
+
+        // Start playing & seek the incoming video
+        if (nextVideo) {
+          currentIdx.current = (currentIdx.current + 1) % heroVideos.length;
+          nextVideo.src = heroVideos[currentIdx.current];
+          nextVideo.load();
+          const onReady = () => { seekRandom(nextVideo); nextVideo.play(); };
+          nextVideo.addEventListener('canplay', onReady, { once: true });
+        }
+
+        // Pause outgoing after fade completes
+        setTimeout(() => { if (prevVideo) prevVideo.pause(); }, 1200);
+
+        return next;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [heroVideos, seekRandom]);
 
   return (
     <div className="home">
@@ -54,21 +73,15 @@ function Home() {
           <video
             ref={videoARef}
             className={`hero__video ${activeVideo === 0 ? 'hero__video--active' : ''}`}
-            autoPlay
             muted
             playsInline
             poster={mediaUrl('DSC_0175.png')}
-            src={heroVideos[0]}
-            onTimeUpdate={() => handleTimeUpdate('A')}
-            onEnded={() => handleVideoEnded('A')}
           />
           <video
             ref={videoBRef}
             className={`hero__video ${activeVideo === 1 ? 'hero__video--active' : ''}`}
             muted
             playsInline
-            onTimeUpdate={() => handleTimeUpdate('B')}
-            onEnded={() => handleVideoEnded('B')}
           />
           <div className="hero__overlay" />
         </div>
