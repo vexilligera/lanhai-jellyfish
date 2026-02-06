@@ -12,7 +12,13 @@ function Home() {
   const videoBRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(0);
 
-  const pickRandom = useCallback(() => heroVideos[Math.floor(Math.random() * heroVideos.length)], [heroVideos]);
+  const lastSrc = useRef(null);
+  const pickRandom = useCallback(() => {
+    const choices = heroVideos.filter((v) => v !== lastSrc.current);
+    const pick = choices[Math.floor(Math.random() * choices.length)];
+    lastSrc.current = pick;
+    return pick;
+  }, [heroVideos]);
 
   const loadAndSeek = useCallback((video, src) => {
     if (!video) return;
