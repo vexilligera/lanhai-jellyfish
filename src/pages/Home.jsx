@@ -11,34 +11,27 @@ function Home() {
   const videoARef = useRef(null);
   const videoBRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(0);
-  const currentIdx = useRef(0);
 
-  // Seek video to a random position (leaving room for 3s of playback)
-  const seekRandom = useCallback((video) => {
-    if (!video || !video.duration) return;
-    const maxStart = Math.max(0, video.duration - 4);
-    video.currentTime = Math.random() * maxStart;
+  const pickRandom = useCallback(() => heroVideos[Math.floor(Math.random() * heroVideos.length)], [heroVideos]);
+
+  const loadAndSeek = useCallback((video, src) => {
+    if (!video) return;
+    video.src = src;
+    video.load();
+    const onReady = () => {
+      const maxStart = Math.max(0, video.duration - 4);
+      video.currentTime = Math.random() * maxStart;
+      video.play();
+    };
+    video.addEventListener('canplay', onReady, { once: true });
   }, []);
 
-  // Set up both videos on mount
+  // Initialize: load a random video into A and start playing
   useEffect(() => {
-    const vA = videoARef.current;
-    const vB = videoBRef.current;
-    if (vA) { vA.src = heroVideos[0]; vA.load(); }
-    if (vB) { vB.src = heroVideos[1]; vB.load(); }
+    loadAndSeek(videoARef.current, pickRandom());
+  }, [loadAndSeek, pickRandom]);
 
-    const handleCanPlayA = () => { seekRandom(vA); vA.play(); };
-    const handleCanPlayB = () => { seekRandom(vB); };
-    if (vA) vA.addEventListener('canplay', handleCanPlayA, { once: true });
-    if (vB) vB.addEventListener('canplay', handleCanPlayB, { once: true });
-
-    return () => {
-      if (vA) vA.removeEventListener('canplay', handleCanPlayA);
-      if (vB) vB.removeEventListener('canplay', handleCanPlayB);
-    };
-  }, [heroVideos, seekRandom]);
-
-  // Timer: every 3s, crossfade to the other video
+  // Every 3s, load a random video into the hidden element, then crossfade
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveVideo((prev) => {
@@ -46,16 +39,7 @@ function Home() {
         const nextVideo = next === 0 ? videoARef.current : videoBRef.current;
         const prevVideo = prev === 0 ? videoARef.current : videoBRef.current;
 
-        // Start playing & seek the incoming video
-        if (nextVideo) {
-          currentIdx.current = (currentIdx.current + 1) % heroVideos.length;
-          nextVideo.src = heroVideos[currentIdx.current];
-          nextVideo.load();
-          const onReady = () => { seekRandom(nextVideo); nextVideo.play(); };
-          nextVideo.addEventListener('canplay', onReady, { once: true });
-        }
-
-        // Pause outgoing after fade completes
+        loadAndSeek(nextVideo, pickRandom());
         setTimeout(() => { if (prevVideo) prevVideo.pause(); }, 1200);
 
         return next;
@@ -63,7 +47,7 @@ function Home() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [heroVideos, seekRandom]);
+  }, [loadAndSeek, pickRandom]);
 
   return (
     <div className="home">
