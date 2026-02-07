@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Logo from './Logo';
+import LanguageSwitcher from './LanguageSwitcher';
 import './Header.css';
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,35 +36,41 @@ function Header() {
           <Logo size={36} color="var(--color-primary-light)" />
         </Link>
 
-        <button
-          className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div className="header__right">
+          <LanguageSwitcher />
+          <button
+            className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
           <Link
             to="/"
             className={`header__link ${location.pathname === '/' ? 'header__link--active' : ''}`}
           >
-            Home
+            {t('nav.home')}
           </Link>
           <Link
             to="/species"
             className={`header__link ${location.pathname.startsWith('/species') ? 'header__link--active' : ''}`}
           >
-            Species
+            {t('nav.species')}
           </Link>
           <Link
             to="/contact"
             className={`header__link ${location.pathname === '/contact' ? 'header__link--active' : ''}`}
           >
-            Contact
+            {t('nav.contact')}
           </Link>
+          <div className="header__nav-lang">
+            <LanguageSwitcher />
+          </div>
         </nav>
       </div>
     </header>

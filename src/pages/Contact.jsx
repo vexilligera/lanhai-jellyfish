@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './Contact.css';
 
 function Contact() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -35,13 +37,9 @@ function Contact() {
     <div className="contact-page">
       <section className="contact-page__hero">
         <div className="container">
-          <p className="section-eyebrow">Get in Touch</p>
-          <h1 className="section-title">Contact Us</h1>
-          <p className="contact-page__subtitle">
-            Interested in pricing, bulk orders, or have questions about our
-            jellyfish? Fill out the form below and we'll get back to you
-            promptly.
-          </p>
+          <p className="section-eyebrow">{t('contact.eyebrow')}</p>
+          <h1 className="section-title">{t('contact.title')}</h1>
+          <p className="contact-page__subtitle">{t('contact.subtitle')}</p>
         </div>
       </section>
 
@@ -57,25 +55,23 @@ function Contact() {
                     <polyline points="22 4 12 14.01 9 11.01"/>
                   </svg>
                 </div>
-                <h3>Email Client Opened!</h3>
+                <h3>{t('contact.successTitle')}</h3>
                 <p>
-                  Your inquiry details have been pre-filled in your email client.
-                  Simply review and send the email. If your email client didn't
-                  open, you can reach us directly at{' '}
+                  {t('contact.successText')}{' '}
                   <a href="mailto:donggua.lanhai@gmail.com">donggua.lanhai@gmail.com</a>.
                 </p>
                 <button
                   className="btn btn--outline"
                   onClick={() => setSubmitted(false)}
                 >
-                  Send Another Inquiry
+                  {t('contact.sendAnother')}
                 </button>
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="contact-form__row">
                   <div className="contact-form__field">
-                    <label htmlFor="name">Full Name *</label>
+                    <label htmlFor="name">{t('contact.fullName')}</label>
                     <input
                       type="text"
                       id="name"
@@ -83,11 +79,11 @@ function Contact() {
                       required
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Your name"
+                      placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
                   <div className="contact-form__field">
-                    <label htmlFor="email">Email Address *</label>
+                    <label htmlFor="email">{t('contact.email')}</label>
                     <input
                       type="email"
                       id="email"
@@ -95,66 +91,66 @@ function Contact() {
                       required
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@example.com"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div className="contact-form__row">
                   <div className="contact-form__field">
-                    <label htmlFor="company">Company / Organization</label>
+                    <label htmlFor="company">{t('contact.company')}</label>
                     <input
                       type="text"
                       id="company"
                       name="company"
                       value={form.company}
                       onChange={handleChange}
-                      placeholder="Optional"
+                      placeholder={t('contact.companyPlaceholder')}
                     />
                   </div>
                   <div className="contact-form__field">
-                    <label htmlFor="inquiryType">Inquiry Type *</label>
+                    <label htmlFor="inquiryType">{t('contact.inquiryType')}</label>
                     <select
                       id="inquiryType"
                       name="inquiryType"
                       value={form.inquiryType}
                       onChange={handleChange}
                     >
-                      <option value="price">Price Inquiry</option>
-                      <option value="bulk">Bulk Sales</option>
-                      <option value="custom">Custom Order</option>
-                      <option value="other">Other</option>
+                      <option value="price">{t('contact.priceInquiry')}</option>
+                      <option value="bulk">{t('contact.bulkSales')}</option>
+                      <option value="custom">{t('contact.customOrder')}</option>
+                      <option value="other">{t('contact.other')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="contact-form__row">
                   <div className="contact-form__field">
-                    <label htmlFor="species">Species of Interest</label>
+                    <label htmlFor="species">{t('contact.speciesOfInterest')}</label>
                     <input
                       type="text"
                       id="species"
                       name="species"
                       value={form.species}
                       onChange={handleChange}
-                      placeholder="e.g., Moon Jellyfish, Japanese Sea Nettle"
+                      placeholder={t('contact.speciesPlaceholder')}
                     />
                   </div>
                   <div className="contact-form__field">
-                    <label htmlFor="quantity">Estimated Quantity</label>
+                    <label htmlFor="quantity">{t('contact.quantity')}</label>
                     <input
                       type="text"
                       id="quantity"
                       name="quantity"
                       value={form.quantity}
                       onChange={handleChange}
-                      placeholder="e.g., 10-50 specimens"
+                      placeholder={t('contact.quantityPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div className="contact-form__field contact-form__field--full">
-                  <label htmlFor="message">Message *</label>
+                  <label htmlFor="message">{t('contact.message')}</label>
                   <textarea
                     id="message"
                     name="message"
@@ -162,12 +158,12 @@ function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your needs, timeline, shipping requirements, etc."
+                    placeholder={t('contact.messagePlaceholder')}
                   />
                 </div>
 
                 <button type="submit" className="btn btn--primary btn--lg contact-form__submit">
-                  Send Inquiry
+                  {t('contact.sendInquiry')}
                 </button>
               </form>
             )}
@@ -176,7 +172,7 @@ function Contact() {
           {/* Sidebar */}
           <div className="contact-page__sidebar">
             <div className="contact-page__info-card">
-              <h3>Direct Email</h3>
+              <h3>{t('contact.directEmail')}</h3>
               <a href="mailto:donggua.lanhai@gmail.com" className="contact-page__email-link">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -186,7 +182,7 @@ function Contact() {
             </div>
 
             <div className="contact-page__info-card">
-              <h3>TikTok</h3>
+              <h3>{t('contact.tiktok')}</h3>
               <a href="https://www.tiktok.com/@lanhai.marine" target="_blank" rel="noopener noreferrer" className="contact-page__tiktok-link">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.87a8.28 8.28 0 0 0 4.76 1.49V6.89a4.85 4.85 0 0 1-1-.2z"/>
@@ -196,38 +192,33 @@ function Contact() {
             </div>
 
             <div className="contact-page__info-card">
-              <h3>Business Hours</h3>
-              <p>Monday - Friday</p>
-              <p>9:00 AM - 6:00 PM (CST)</p>
+              <h3>{t('contact.businessHours')}</h3>
+              <p>{t('contact.businessDays')}</p>
+              <p>{t('contact.businessTime')}</p>
             </div>
 
             <div className="contact-page__info-card">
-              <h3>What We Offer</h3>
+              <h3>{t('contact.whatWeOffer')}</h3>
               <ul>
-                <li>Individual specimens</li>
-                <li>Bulk orders for aquariums</li>
-                <li>Research partnerships</li>
-                <li>Event & exhibition supply</li>
-                <li>Custom breeding requests</li>
-                <li>Global shipping</li>
+                <li>{t('contact.offer1')}</li>
+                <li>{t('contact.offer2')}</li>
+                <li>{t('contact.offer3')}</li>
+                <li>{t('contact.offer4')}</li>
+                <li>{t('contact.offer5')}</li>
+                <li>{t('contact.offer6')}</li>
               </ul>
             </div>
 
             <div className="contact-page__info-card contact-page__info-card--highlight">
-              <h3>Bulk Orders</h3>
-              <p>
-                Ordering 50+ specimens? Contact us for special bulk pricing and
-                dedicated support for your project.
-              </p>
+              <h3>{t('contact.bulkOrders')}</h3>
+              <p>{t('contact.bulkText')}</p>
             </div>
 
             <div className="contact-page__info-card">
-              <h3>About LanHai</h3>
-              <p>
-                We are the jellyfish division of LanHai Marine, one of China's most established marine life companies since 1978. All 30+ species are artificially bred in our lab facilities.
-              </p>
+              <h3>{t('contact.aboutLanhai')}</h3>
+              <p>{t('contact.aboutText')}</p>
               <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: '8px' }}>
-                Visit LanHai Marine
+                {t('contact.visitLanhai')}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
                 </svg>

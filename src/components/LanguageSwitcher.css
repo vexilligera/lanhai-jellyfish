@@ -1,0 +1,32 @@
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.lang-switcher__btn {
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.02em;
+}
+
+.lang-switcher__btn:hover {
+  color: var(--color-text-bright);
+}
+
+.lang-switcher__btn--active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.lang-switcher__btn--active:hover {
+  color: var(--color-bg);
+}

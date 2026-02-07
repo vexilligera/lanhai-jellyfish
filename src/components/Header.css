@@ -39,15 +39,20 @@
   color: var(--color-primary-light);
 }
 
-.header__logo-icon {
-  color: var(--color-primary);
-  font-size: 1.3rem;
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .header__nav {
   display: flex;
   align-items: center;
   gap: 36px;
+}
+
+.header__nav-lang {
+  display: none;
 }
 
 .header__link {
@@ -117,8 +122,14 @@
     -webkit-backdrop-filter: none;
   }
 
+  .header__right .lang-switcher {
+    display: none;
+  }
+
   .header__burger {
     display: flex;
+    position: relative;
+    z-index: 1001;
   }
 
   .header__nav {
@@ -142,9 +153,9 @@
     pointer-events: all;
   }
 
-  .header__burger {
-    position: relative;
-    z-index: 1001;
+  .header__nav-lang {
+    display: block;
+    margin-top: 8px;
   }
 
   .header__link {

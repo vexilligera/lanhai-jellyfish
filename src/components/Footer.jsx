@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Logo from './Logo';
 import './Footer.css';
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer__inner container">
@@ -12,21 +15,21 @@ function Footer() {
               <Logo size={32} color="var(--color-primary)" />
             </Link>
             <p className="footer__tagline">
-              Asia's largest jellyfish supplier. Over 30 lab-bred species, backed by{' '}
-              <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="footer__ext-link">LanHai Marine</a>.
+              {t('footer.tagline')}{' '}
+              <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="footer__ext-link">{t('footer.lanhaiMarine')}</a>.
             </p>
           </div>
 
           <div className="footer__links">
             <div className="footer__col">
-              <h4 className="footer__col-title">Explore</h4>
-              <Link to="/" className="footer__col-link">Home</Link>
-              <Link to="/species" className="footer__col-link">Species</Link>
-              <Link to="/contact" className="footer__col-link">Contact</Link>
+              <h4 className="footer__col-title">{t('footer.explore')}</h4>
+              <Link to="/" className="footer__col-link">{t('nav.home')}</Link>
+              <Link to="/species" className="footer__col-link">{t('nav.species')}</Link>
+              <Link to="/contact" className="footer__col-link">{t('nav.contact')}</Link>
             </div>
             <div className="footer__col">
-              <h4 className="footer__col-title">LanHai Marine</h4>
-              <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="footer__col-link">Main Website</a>
+              <h4 className="footer__col-title">{t('footer.lanhaiMarine')}</h4>
+              <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="footer__col-link">{t('footer.mainWebsite')}</a>
               <a href="mailto:donggua.lanhai@gmail.com" className="footer__col-link footer__col-link--icon">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -44,7 +47,7 @@ function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; {new Date().getFullYear()} LanHai Jellyfish. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

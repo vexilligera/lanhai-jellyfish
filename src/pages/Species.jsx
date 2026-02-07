@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { speciesList } from '../data/species';
 import SpeciesCard from '../components/SpeciesCard';
 import './Species.css';
 
 function Species() {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
 
   const filtered = useMemo(() => {
@@ -12,23 +14,21 @@ function Species() {
     const q = search.toLowerCase();
     return speciesList.filter(
       (s) =>
-        s.name.toLowerCase().includes(q) ||
-        s.scientificName.toLowerCase().includes(q) ||
-        s.shortDescription.toLowerCase().includes(q)
+        t(`species.${s.id}.name`).toLowerCase().includes(q) ||
+        t(`species.${s.id}.scientificName`).toLowerCase().includes(q) ||
+        t(`species.${s.id}.shortDescription`).toLowerCase().includes(q)
     );
-  }, [search]);
+  }, [search, t]);
 
   return (
     <div className="species-page">
       <section className="species-page__hero">
         <div className="container">
-          <p className="section-eyebrow">Our Collection</p>
-          <h1 className="section-title">Jellyfish Species</h1>
+          <p className="section-eyebrow">{t('speciesPage.eyebrow')}</p>
+          <h1 className="section-title">{t('speciesPage.title')}</h1>
           <p className="species-page__subtitle">
-            Browse our growing catalog of captive-bred jellyfish species. We
-            currently offer more than 30 species and are continuously
-            expanding our collection. Showing {speciesList.length} featured species below
-            — <Link to="/contact" className="species-page__link">contact us</Link> for the full list.
+            {t('speciesPage.subtitle', { count: speciesList.length })}{' '}
+            <Link to="/contact" className="species-page__link">{t('speciesPage.contactForFull')}</Link> {t('speciesPage.contactForFullSuffix')}
           </p>
         </div>
       </section>
@@ -43,13 +43,13 @@ function Species() {
             <input
               type="text"
               className="species-page__search"
-              placeholder="Search species by name..."
+              placeholder={t('speciesPage.searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <span className="species-page__count">
-            {filtered.length} {filtered.length === 1 ? 'species' : 'species'} found
+            {t('speciesPage.speciesFound', { count: filtered.length })}
           </span>
         </div>
 
@@ -61,12 +61,12 @@ function Species() {
           </div>
         ) : (
           <div className="species-page__empty">
-            <p>No species found matching "{search}"</p>
+            <p>{t('speciesPage.noResults', { search })}</p>
             <button
               className="btn btn--outline btn--sm"
               onClick={() => setSearch('')}
             >
-              Clear search
+              {t('speciesPage.clearSearch')}
             </button>
           </div>
         )}

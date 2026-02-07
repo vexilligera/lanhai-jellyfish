@@ -1,11 +1,13 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { speciesList } from '../data/species';
 import { mediaUrl } from '../utils/asset';
 import SpeciesCard from '../components/SpeciesCard';
 import './Home.css';
 
 function Home() {
+  const { t } = useTranslation();
   const featuredSpecies = speciesList.filter((s) => s.featured);
   // videoA permanently holds hero-1, videoB permanently holds hero-2
   const videoARef = useRef(null);
@@ -62,33 +64,32 @@ function Home() {
         </div>
 
         <div className="hero__content container">
-          <p className="hero__eyebrow">Premium Live Jellyfish</p>
+          <p className="hero__eyebrow">{t('hero.eyebrow')}</p>
           <h1 className="hero__title">
-            Discover the
+            {t('hero.title1')}
             <br />
-            <span className="hero__title-accent">Ethereal Beauty</span>
+            <span className="hero__title-accent">{t('hero.titleAccent')}</span>
             <br />
-            of Jellyfish
+            {t('hero.title2')}
           </h1>
           <p className="hero__subtitle">
-            Asia's largest jellyfish supplier — over 30 lab-bred species,
-            backed by the expertise of{' '}
+            {t('hero.subtitle')}{' '}
             <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="hero__link">
-              LanHai Marine
+              {t('hero.lanhaiMarine')}
             </a>.
           </p>
           <div className="hero__actions">
             <Link to="/species" className="btn btn--primary">
-              Explore Species
+              {t('hero.exploreSpecies')}
             </Link>
             <Link to="/contact" className="btn btn--outline">
-              Get in Touch
+              {t('hero.getInTouch')}
             </Link>
           </div>
         </div>
 
         <div className="hero__scroll-hint">
-          <span>Scroll</span>
+          <span>{t('hero.scroll')}</span>
           <div className="hero__scroll-line" />
         </div>
       </section>
@@ -97,21 +98,21 @@ function Home() {
       <section className="about container">
         <div className="about__grid">
           <div className="about__text">
-            <p className="section-eyebrow">About LanHai Jellyfish</p>
-            <h2 className="section-title">Asia's Largest Jellyfish Supplier</h2>
+            <p className="section-eyebrow">{t('about.eyebrow')}</p>
+            <h2 className="section-title">{t('about.title')}</h2>
             <p className="about__description">
-              LanHai Jellyfish is the jellyfish division of{' '}
+              {t('about.desc1Prefix')}{' '}
               <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="about__link">
-                LanHai Marine
+                {t('hero.lanhaiMarine')}
               </a>
-              , one of China's earliest and most established marine life companies, founded in 1978. With over 46 years of industry experience and a 15,000+ m² breeding facility, we are the largest dedicated jellyfish supplier in Asia.
+              {t('about.desc1')}
             </p>
             <p className="about__description">
-              All of our jellyfish are artificially bred and raised in our laboratory facilities, ensuring consistent quality, health, and availability year-round. We currently offer more than 30 species — from the iconic Moon Jellyfish to the dramatic Japanese Sea Nettle — serving aquariums, research institutions, exhibitions, and private collectors worldwide. For our full species list,{' '}
-              <Link to="/contact" className="about__link">contact us</Link>.
+              {t('about.desc2')}{' '}
+              <Link to="/contact" className="about__link">{t('about.contactUs')}</Link>.
             </p>
             <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="btn btn--outline btn--sm about__cta">
-              Visit LanHai Marine
+              {t('about.visitLanhai')}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
               </svg>
@@ -119,20 +120,20 @@ function Home() {
           </div>
           <div className="about__stats">
             <div className="about__stat">
-              <span className="about__stat-number">30+</span>
-              <span className="about__stat-label">Lab-Bred Species</span>
+              <span className="about__stat-number">{t('about.stat1Num')}</span>
+              <span className="about__stat-label">{t('about.stat1Label')}</span>
             </div>
             <div className="about__stat">
-              <span className="about__stat-number">46 yrs</span>
-              <span className="about__stat-label">Industry Experience</span>
+              <span className="about__stat-number">{t('about.stat2Num')}</span>
+              <span className="about__stat-label">{t('about.stat2Label')}</span>
             </div>
             <div className="about__stat">
-              <span className="about__stat-number">15,000 m²</span>
-              <span className="about__stat-label">Breeding Facility</span>
+              <span className="about__stat-number">{t('about.stat3Num')}</span>
+              <span className="about__stat-label">{t('about.stat3Label')}</span>
             </div>
             <div className="about__stat">
-              <span className="about__stat-number">#1</span>
-              <span className="about__stat-label">Jellyfish Supplier in Asia</span>
+              <span className="about__stat-number">{t('about.stat4Num')}</span>
+              <span className="about__stat-label">{t('about.stat4Label')}</span>
             </div>
           </div>
         </div>
@@ -142,11 +143,11 @@ function Home() {
       <section className="featured container">
         <div className="featured__header">
           <div>
-            <p className="section-eyebrow">Our Collection</p>
-            <h2 className="section-title">Featured Species</h2>
+            <p className="section-eyebrow">{t('featured.eyebrow')}</p>
+            <h2 className="section-title">{t('featured.title')}</h2>
           </div>
           <Link to="/species" className="btn btn--outline btn--sm">
-            View All Species
+            {t('featured.viewAll')}
           </Link>
         </div>
         <div className="featured__grid">
@@ -159,14 +160,10 @@ function Home() {
       {/* CTA Section */}
       <section className="cta">
         <div className="cta__inner container">
-          <h2 className="cta__title">Interested in Our Jellyfish?</h2>
-          <p className="cta__text">
-            Whether you're looking for a single specimen or bulk orders for your
-            aquarium, we'd love to hear from you. Get in touch for pricing,
-            availability, and shipping information.
-          </p>
+          <h2 className="cta__title">{t('cta.title')}</h2>
+          <p className="cta__text">{t('cta.text')}</p>
           <Link to="/contact" className="btn btn--primary btn--lg">
-            Contact Us for Pricing
+            {t('cta.button')}
           </Link>
         </div>
       </section>
