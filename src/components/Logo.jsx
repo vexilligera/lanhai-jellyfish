@@ -7,41 +7,40 @@ function Logo({ size = 32, color = 'currentColor' }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Dome / bell curve */}
+      {/* Hemisphere dome connected to J-shape on the left.
+          Arc goes from bottom-left, up over a semicircle, 
+          ending partway down the right side (not a full tangent). */}
       <path
-        d="M12 38 C12 38, 10 14, 32 10 C54 6, 54 34, 54 38"
-        stroke={color}
-        strokeWidth="5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Left tentacle - J shape curling left */}
-      <path
-        d="M20 38 C20 38, 20 54, 14 58 C8 62, 4 56, 6 52"
+        d="M16 40 C16 18, 48 18, 48 32"
         stroke={color}
         strokeWidth="4.5"
         strokeLinecap="round"
         fill="none"
       />
-      {/* Middle tentacle - longest straight line */}
+      {/* J-shape: continues from left end of dome, straight down then curls left */}
+      <path
+        d="M16 40 L16 52 C16 60, 6 60, 6 54"
+        stroke={color}
+        strokeWidth="4.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* Middle tentacle - straight vertical, longest */}
       <line
-        x1="34"
-        y1="38"
-        x2="34"
-        y2="54"
+        x1="32"
+        y1="40"
+        x2="32"
+        y2="56"
         stroke={color}
         strokeWidth="4.5"
         strokeLinecap="round"
       />
-      {/* Right tentacle - shortest */}
-      <line
-        x1="46"
-        y1="38"
-        x2="46"
-        y2="48"
-        stroke={color}
-        strokeWidth="4.5"
-        strokeLinecap="round"
+      {/* Right dot - aligned with right edge of dome, detached */}
+      <circle
+        cx="48"
+        cy="46"
+        r="4"
+        fill={color}
       />
     </svg>
   );
