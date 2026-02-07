@@ -150,7 +150,7 @@ function Home() {
           </Link>
         </div>
         <div className="featured__grid">
-          {featuredSpecies.map((species) => (
+          {featuredSpecies.slice(0, 5).map((species) => (
             <SpeciesCard key={species.id} species={species} />
           ))}
         </div>
