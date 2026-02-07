@@ -109,7 +109,6 @@ function SpeciesDetail() {
         <div className="detail__related-grid">
           {speciesList
             .filter((s) => s.id !== species.id)
-            .slice(0, 3)
             .map((s) => (
               <Link to={`/species/${s.id}`} key={s.id} className="detail__related-card">
                 <div className="detail__related-img-wrap">

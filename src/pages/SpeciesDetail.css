@@ -181,9 +181,12 @@
 }
 
 .detail__related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .detail__related-card {
@@ -195,6 +198,9 @@
   border: 1px solid var(--color-border);
   background: var(--color-bg-card);
   transition: border-color var(--transition-normal), transform var(--transition-normal);
+  flex-shrink: 0;
+  min-width: 260px;
+  scroll-snap-align: start;
 }
 
 .detail__related-card:hover {
