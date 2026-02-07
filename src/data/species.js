@@ -62,4 +62,67 @@ The Spotted Jellyfish has eight elaborate, frilly oral arms rather than long tra
     ],
     featured: true,
   },
+  {
+    id: 'flame-jellyfish',
+    name: 'Flame Jellyfish',
+    scientificName: 'Rhopilema esculentum',
+    shortDescription: 'A large, edible jellyfish with a thick dome-shaped bell and bushy oral arms, widely cultivated in East Asia.',
+    description: `The Flame Jellyfish (Rhopilema esculentum) is one of the most commercially important jellyfish species in the world, widely harvested and cultivated across East Asia for culinary use. Its thick, robust bell can grow up to 50 cm in diameter, with a milky white to pale brown coloration and dense, cauliflower-like oral arms.
+
+Native to the coastal waters of the western Pacific, particularly the Yellow Sea, East China Sea, and waters around Japan and Korea, this species thrives in warm, shallow coastal environments. Rhopilema esculentum has been a staple of Chinese cuisine for centuries and is considered a delicacy when prepared as a cold dish with sesame oil and vinegar.
+
+Beyond its culinary value, the Flame Jellyfish is increasingly popular in aquarium displays due to its impressive size and dramatic appearance. Its thick bell pulses with powerful, deliberate contractions, creating a mesmerizing visual effect. The species has a mild sting that is harmless to humans.`,
+    habitat: 'Western Pacific, Yellow Sea, East China Sea',
+    size: 'Bell diameter: up to 50 cm',
+    diet: 'Plankton, small crustaceans, fish larvae',
+    lifespan: '12-18 months',
+    stingLevel: 'Mild - harmless to humans',
+    thumbnail: 'DSC_0130.png',
+    images: [
+      'DSC_0130.png',
+    ],
+    featured: true,
+  },
+  {
+    id: 'egg-yolk-jellyfish',
+    name: 'Egg Yolk Jellyfish',
+    scientificName: 'Phacellophora camtschatica',
+    shortDescription: 'A large, distinctive jellyfish resembling a fried egg, with a yellow central mass surrounded by a translucent bell.',
+    description: `The Egg Yolk Jellyfish (Phacellophora camtschatica) is one of the most recognizable jellyfish in the ocean, named for its striking resemblance to a fried egg. Its large, flat bell can reach up to 60 cm in diameter, featuring a distinctive yellow-orange central mass of gonads surrounded by a translucent, whitish bell margin.
+
+Found in temperate waters across the Pacific and Atlantic oceans, this species drifts slowly through the water column, often appearing nearly motionless. Unlike more active hunters, the Egg Yolk Jellyfish is a passive predator, using its long, delicate tentacles — which can trail up to 6 meters — to ensnare small jellyfish, zooplankton, and other gelatinous organisms that drift into contact.
+
+In aquariums, the Egg Yolk Jellyfish is a showstopper due to its unusual form and enormous size. Its gentle, slow pulsing and dramatic trailing tentacles create an otherworldly display. The sting is very mild, posing minimal risk to humans.`,
+    habitat: 'Temperate Pacific and Atlantic oceans',
+    size: 'Bell diameter: up to 60 cm, tentacles up to 6 m',
+    diet: 'Small jellyfish, zooplankton, gelatinous organisms',
+    lifespan: '12-18 months',
+    stingLevel: 'Very mild - minimal risk to humans',
+    thumbnail: 'DSC_0172.png',
+    images: [
+      'DSC_0172.png',
+    ],
+    featured: true,
+  },
+  {
+    id: 'pacific-sea-nettle',
+    name: 'Pacific Sea Nettle',
+    scientificName: 'Chrysaora fuscescens',
+    shortDescription: 'A spectacular species with a golden-red bell and long, flowing tentacles, iconic along the Pacific coast.',
+    description: `The Pacific Sea Nettle (Chrysaora fuscescens) is one of the most visually stunning jellyfish species found along the Pacific coast of North America. Its golden to reddish-brown bell can reach up to 30 cm in diameter, with striking reddish-maroon oral arms and long, trailing marginal tentacles that can extend several meters.
+
+This species inhabits the eastern Pacific Ocean from Alaska to Baja California, often appearing in large blooms near the coast during summer and fall months. Pacific Sea Nettles play an important ecological role as both predator of zooplankton and prey for larger marine animals like sea turtles and ocean sunfish.
+
+Their dramatic appearance — a warm amber bell with deep crimson oral arms contrasted against blue water — makes them one of the most photographed and admired jellyfish species worldwide. In aquariums, they are a perennial favorite. They possess a moderate sting that can cause pain and welts in humans but is rarely dangerous.`,
+    habitat: 'Eastern Pacific Ocean, from Alaska to Baja California',
+    size: 'Bell diameter: up to 30 cm, tentacles up to 4.5 m',
+    diet: 'Zooplankton, larval fish, other jellyfish',
+    lifespan: '6-12 months',
+    stingLevel: 'Moderate - can cause pain and welts',
+    thumbnail: 'DSC_0018.JPG',
+    images: [
+      'DSC_0018.JPG',
+    ],
+    featured: true,
+  },
 ];
