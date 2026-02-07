@@ -45,6 +45,15 @@
   gap: 36px;
 }
 
+.header__nav-lang {
+  display: none;
+}
+
+/* Desktop language switcher (outside nav) */
+.header__inner > .lang-switcher {
+  flex-shrink: 0;
+}
+
 .header__link {
   font-size: 0.9rem;
   font-weight: 400;
@@ -137,6 +146,15 @@
   .header__nav--open {
     opacity: 1;
     pointer-events: all;
+  }
+
+  .header__inner > .lang-switcher {
+    display: none;
+  }
+
+  .header__nav-lang {
+    display: block;
+    margin-top: 8px;
   }
 
   .header__link {

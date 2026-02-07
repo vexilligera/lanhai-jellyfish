@@ -55,8 +55,12 @@ function Header() {
           >
             {t('nav.contact')}
           </Link>
-          <LanguageSwitcher />
+          <div className="header__nav-lang">
+            <LanguageSwitcher />
+          </div>
         </nav>
+
+        <LanguageSwitcher />
 
         <button
           className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
