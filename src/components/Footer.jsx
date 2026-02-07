@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 import './Footer.css';
 
 function Footer() {
@@ -7,7 +8,9 @@ function Footer() {
       <div className="footer__inner container">
         <div className="footer__top">
           <div className="footer__brand">
-            <Link to="/" className="footer__logo" aria-label="Home" />
+            <Link to="/" className="footer__logo" aria-label="Home">
+              <Logo size={32} color="var(--color-primary)" />
+            </Link>
             <p className="footer__tagline">
               Asia's largest jellyfish supplier. Over 30 lab-bred species, backed by{' '}
               <a href="https://lanhai-marine.com/" target="_blank" rel="noopener noreferrer" className="footer__ext-link">LanHai Marine</a>.

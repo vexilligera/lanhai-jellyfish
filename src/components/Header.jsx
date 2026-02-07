@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from './Logo';
 import './Header.css';
 
 function Header() {
@@ -28,7 +29,9 @@ function Header() {
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--menu-open' : ''}`}>
       <div className="header__inner container">
-        <Link to="/" className="header__logo" aria-label="Home" />
+        <Link to="/" className="header__logo" aria-label="Home">
+          <Logo size={36} color="var(--color-primary-light)" />
+        </Link>
 
         <button
           className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
