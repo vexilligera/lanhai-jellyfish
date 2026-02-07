@@ -62,6 +62,7 @@ function SpeciesDetail() {
             <div className="detail__info-header">
               <h1 className="detail__name">{species.name}</h1>
               <p className="detail__scientific">{species.scientificName}</p>
+              <span className="detail__price">{species.price === 'Inquire' ? 'Price: Inquire' : `From ${species.price} / specimen`}</span>
             </div>
 
             <div className="detail__meta">

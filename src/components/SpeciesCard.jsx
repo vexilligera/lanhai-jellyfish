@@ -13,6 +13,7 @@ function SpeciesCard({ species }) {
           loading="lazy"
         />
         <div className="species-card__overlay" />
+        <span className="species-card__price">{species.price}</span>
       </div>
       <div className="species-card__content">
         <h3 className="species-card__name">{species.name}</h3>

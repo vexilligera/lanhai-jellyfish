@@ -14,6 +14,7 @@ Their gentle pulsating movement and ethereal glow under light make them a favori
     diet: 'Plankton, fish eggs, small crustaceans',
     lifespan: '12-18 months',
     stingLevel: 'Mild - generally harmless to humans',
+    price: '$5',
     thumbnail: 'DSC_0175.png',
     images: [
       'DSC_0175.png',
@@ -35,6 +36,7 @@ Their dramatic appearance — a warm amber bell contrasted against deep blue wat
     diet: 'Zooplankton, larval fish, other jellyfish',
     lifespan: '6-12 months',
     stingLevel: 'Moderate - can cause pain and welts',
+    price: 'Inquire',
     thumbnail: 'DSC_0131.png',
     images: [
       'DSC_0131.png',
@@ -56,6 +58,7 @@ The Spotted Jellyfish has eight elaborate, frilly oral arms rather than long tra
     diet: 'Zooplankton, supplemented by symbiotic algae photosynthesis',
     lifespan: '4-8 months',
     stingLevel: 'Very mild - virtually imperceptible to humans',
+    price: 'Inquire',
     thumbnail: 'DSC_0168.png',
     images: [
       'DSC_0168.png',
@@ -77,6 +80,7 @@ Beyond its culinary value, the Flame Jellyfish is increasingly popular in aquari
     diet: 'Plankton, small crustaceans, fish larvae',
     lifespan: '12-18 months',
     stingLevel: 'Mild - harmless to humans',
+    price: '$3',
     thumbnail: 'DSC_0130.png',
     images: [
       'DSC_0130.png',
@@ -98,6 +102,7 @@ In aquariums, the Egg Yolk Jellyfish is a showstopper due to its unusual form an
     diet: 'Small jellyfish, zooplankton, gelatinous organisms',
     lifespan: '12-18 months',
     stingLevel: 'Very mild - minimal risk to humans',
+    price: 'Inquire',
     thumbnail: 'DSC_0172.png',
     images: [
       'DSC_0172.png',
@@ -119,6 +124,7 @@ Their dramatic appearance — a warm amber bell with deep crimson oral arms cont
     diet: 'Zooplankton, larval fish, other jellyfish',
     lifespan: '6-12 months',
     stingLevel: 'Moderate - can cause pain and welts',
+    price: 'Inquire',
     thumbnail: 'DSC_0018.JPG',
     images: [
       'DSC_0018.JPG',

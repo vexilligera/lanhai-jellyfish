@@ -39,6 +39,22 @@
   pointer-events: none;
 }
 
+.species-card__price {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(4, 8, 16, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  z-index: 1;
+}
+
 .species-card__content {
   padding: 20px 24px 24px;
   display: flex;
