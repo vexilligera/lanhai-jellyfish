@@ -36,19 +36,6 @@ function Header() {
           <Logo size={36} color="var(--color-primary-light)" />
         </Link>
 
-        <div className="header__right">
-          <LanguageSwitcher />
-          <button
-            className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
           <Link
             to="/"
@@ -68,10 +55,18 @@ function Header() {
           >
             {t('nav.contact')}
           </Link>
-          <div className="header__nav-lang">
-            <LanguageSwitcher />
-          </div>
+          <LanguageSwitcher />
         </nav>
+
+        <button
+          className={`header__burger ${menuOpen ? 'header__burger--open' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
   );

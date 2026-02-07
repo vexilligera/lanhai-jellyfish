@@ -39,20 +39,10 @@
   color: var(--color-primary-light);
 }
 
-.header__right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
 .header__nav {
   display: flex;
   align-items: center;
   gap: 36px;
-}
-
-.header__nav-lang {
-  display: none;
 }
 
 .header__link {
@@ -122,10 +112,6 @@
     -webkit-backdrop-filter: none;
   }
 
-  .header__right .lang-switcher {
-    display: none;
-  }
-
   .header__burger {
     display: flex;
     position: relative;
@@ -151,11 +137,6 @@
   .header__nav--open {
     opacity: 1;
     pointer-events: all;
-  }
-
-  .header__nav-lang {
-    display: block;
-    margin-top: 8px;
   }
 
   .header__link {
