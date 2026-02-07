@@ -17,8 +17,6 @@ Their gentle pulsating movement and ethereal glow under light make them a favori
     thumbnail: 'DSC_0175.png',
     images: [
       'DSC_0175.png',
-      'DSC_0170.png',
-      'DSC_0174.png',
     ],
     featured: true,
   },
@@ -40,8 +38,6 @@ Their dramatic appearance — a warm amber bell contrasted against deep blue wat
     thumbnail: 'DSC_0131.png',
     images: [
       'DSC_0131.png',
-      'DSC_0136.png',
-      'DSC_0145.png',
     ],
     featured: true,
   },
@@ -63,7 +59,6 @@ The Spotted Jellyfish has eight elaborate, frilly oral arms rather than long tra
     thumbnail: 'DSC_0168.png',
     images: [
       'DSC_0168.png',
-      'DSC_0169.png',
     ],
     featured: true,
   },
