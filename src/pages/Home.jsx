@@ -29,7 +29,7 @@ function Home() {
     video.src = src;
     video.load();
     const onReady = () => {
-      const maxStart = Math.max(0, video.duration - 4);
+      const maxStart = Math.max(0, video.duration - 6);
       video.currentTime = Math.random() * maxStart;
       video.play();
     };
@@ -54,7 +54,7 @@ function Home() {
 
         return next;
       });
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [pickAndPlay]);
