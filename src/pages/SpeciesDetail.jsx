@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { speciesList } from '../data/species';
 import { mediaUrl } from '../utils/asset';
 import './SpeciesDetail.css';
@@ -29,6 +30,13 @@ function SpeciesDetail() {
 
   return (
     <div className="detail">
+      <Helmet>
+        <title>{name} ({scientificName}) — LanHai Jellyfish</title>
+        <meta name="description" content={t(`species.${species.id}.shortDescription`)} />
+        <meta property="og:title" content={`${name} — LanHai Jellyfish`} />
+        <meta property="og:description" content={t(`species.${species.id}.shortDescription`)} />
+        <meta property="og:image" content={mediaUrl(species.thumbnail)} />
+      </Helmet>
       <div className="detail__hero">
         <div className="container">
           <Link to="/species" className="detail__back">

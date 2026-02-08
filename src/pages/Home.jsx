@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { speciesList } from '../data/species';
 import { mediaUrl } from '../utils/asset';
 import SpeciesCard from '../components/SpeciesCard';
@@ -41,6 +42,13 @@ function Home() {
 
   return (
     <div className="home">
+      <Helmet>
+        <title>LanHai Jellyfish — {t('about.title')}</title>
+        <meta name="description" content="LanHai Jellyfish - Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions. Backed by LanHai Marine since 1978." />
+        <meta property="og:title" content="LanHai Jellyfish — Premium Live Jellyfish" />
+        <meta property="og:description" content="Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Hero Section */}
       <section className="hero">
         <div className="hero__video-wrap">

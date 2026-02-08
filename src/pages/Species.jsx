@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { speciesList } from '../data/species';
 import SpeciesCard from '../components/SpeciesCard';
 import './Species.css';
@@ -22,6 +23,12 @@ function Species() {
 
   return (
     <div className="species-page">
+      <Helmet>
+        <title>{t('speciesPage.title')} — LanHai Jellyfish</title>
+        <meta name="description" content="Browse our catalog of captive-bred jellyfish species. Moon jellyfish, sea nettles, spotted jellyfish and more. Over 30 species available." />
+        <meta property="og:title" content="Jellyfish Species — LanHai Jellyfish" />
+        <meta property="og:description" content="Browse over 30 captive-bred jellyfish species available for aquariums, research, and exhibitions." />
+      </Helmet>
       <section className="species-page__hero">
         <div className="container">
           <p className="section-eyebrow">{t('speciesPage.eyebrow')}</p>
