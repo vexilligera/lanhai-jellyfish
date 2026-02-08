@@ -10,19 +10,38 @@ import './Home.css';
 function Home() {
   const { t } = useTranslation();
   const featuredSpecies = speciesList.filter((s) => s.featured);
-  // videoA permanently holds hero-1, videoB permanently holds hero-2
+  const heroSources = [
+    mediaUrl('hero-1.mp4'),
+    mediaUrl('hero-2.mp4'),
+    mediaUrl('hero-3.mp4'),
+    mediaUrl('hero-4.mp4'),
+  ];
   const videoARef = useRef(null);
   const videoBRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(0); // 0=A, 1=B
+  const lastSrc = useRef(null);
 
-  const seekAndPlay = useCallback((video) => {
-    if (!video || !video.duration) return;
-    const maxStart = Math.max(0, video.duration - 4);
-    video.currentTime = Math.random() * maxStart;
-    video.play();
-  }, []);
+  const pickAndPlay = useCallback((video) => {
+    if (!video) return;
+    const choices = heroSources.filter((s) => s !== lastSrc.current);
+    const src = choices[Math.floor(Math.random() * choices.length)];
+    lastSrc.current = src;
+    video.src = src;
+    video.load();
+    const onReady = () => {
+      const maxStart = Math.max(0, video.duration - 4);
+      video.currentTime = Math.random() * maxStart;
+      video.play();
+    };
+    video.addEventListener('canplay', onReady, { once: true });
+  }, [heroSources]);
 
-  // Every 3s, swap to the other video at a random position
+  // Initialize first video
+  useEffect(() => {
+    pickAndPlay(videoARef.current);
+  }, [pickAndPlay]);
+
+  // Every 3s, load a random video into the hidden element, then crossfade
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveVideo((prev) => {
@@ -30,7 +49,7 @@ function Home() {
         const nextVideo = next === 0 ? videoARef.current : videoBRef.current;
         const prevVideo = prev === 0 ? videoARef.current : videoBRef.current;
 
-        seekAndPlay(nextVideo);
+        pickAndPlay(nextVideo);
         setTimeout(() => { if (prevVideo) prevVideo.pause(); }, 1200);
 
         return next;
@@ -38,7 +57,7 @@ function Home() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [seekAndPlay]);
+  }, [pickAndPlay]);
 
   return (
     <div className="home">
@@ -55,8 +74,6 @@ function Home() {
           <video
             ref={videoARef}
             className={`hero__video ${activeVideo === 0 ? 'hero__video--active' : ''}`}
-            src={mediaUrl('hero-1.mp4')}
-            autoPlay
             muted
             playsInline
             poster={mediaUrl('DSC_0175.png')}
@@ -64,7 +81,6 @@ function Home() {
           <video
             ref={videoBRef}
             className={`hero__video ${activeVideo === 1 ? 'hero__video--active' : ''}`}
-            src={mediaUrl('hero-2.mp4')}
             muted
             playsInline
           />
