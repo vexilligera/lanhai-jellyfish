@@ -21,27 +21,46 @@ function Home() {
   const [activeVideo, setActiveVideo] = useState(0); // 0=A, 1=B
   const lastSrc = useRef(null);
 
-  const pickAndPlay = useCallback((video) => {
-    if (!video) return;
+  // Pick a random source different from last
+  const pickSrc = useCallback(() => {
     const choices = heroSources.filter((s) => s !== lastSrc.current);
     const src = choices[Math.floor(Math.random() * choices.length)];
     lastSrc.current = src;
+    return src;
+  }, [heroSources]);
+
+  // Preload a video: set src, load, seek to random position, then pause (ready to play instantly)
+  const preload = useCallback((video, src) => {
+    if (!video) return;
     video.src = src;
     video.load();
     const onReady = () => {
       const maxStart = Math.max(0, video.duration - 6);
       video.currentTime = Math.random() * maxStart;
-      video.play();
     };
     video.addEventListener('canplay', onReady, { once: true });
-  }, [heroSources]);
+  }, []);
 
-  // Initialize first video
+  // Initialize: load & play A, preload B
   useEffect(() => {
-    pickAndPlay(videoARef.current);
-  }, [pickAndPlay]);
+    const vA = videoARef.current;
+    const vB = videoBRef.current;
+    const srcA = pickSrc();
+    if (vA) {
+      vA.src = srcA;
+      vA.load();
+      const onReady = () => {
+        const maxStart = Math.max(0, vA.duration - 6);
+        vA.currentTime = Math.random() * maxStart;
+        vA.play();
+      };
+      vA.addEventListener('canplay', onReady, { once: true });
+    }
+    // Preload B so it's ready for the first transition
+    preload(vB, pickSrc());
+  }, [pickSrc, preload]);
 
-  // Every 3s, load a random video into the hidden element, then crossfade
+  // Every 5s, crossfade to the preloaded video, then preload the next one
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveVideo((prev) => {
@@ -49,15 +68,23 @@ function Home() {
         const nextVideo = next === 0 ? videoARef.current : videoBRef.current;
         const prevVideo = prev === 0 ? videoARef.current : videoBRef.current;
 
-        pickAndPlay(nextVideo);
-        setTimeout(() => { if (prevVideo) prevVideo.pause(); }, 1200);
+        // Play the already-preloaded video instantly
+        if (nextVideo) nextVideo.play();
+
+        // After fade completes, pause the old one and preload next clip into it
+        setTimeout(() => {
+          if (prevVideo) {
+            prevVideo.pause();
+            preload(prevVideo, pickSrc());
+          }
+        }, 1200);
 
         return next;
       });
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [pickAndPlay]);
+  }, [pickSrc, preload]);
 
   return (
     <div className="home">
