@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
@@ -10,12 +10,12 @@ import './Home.css';
 function Home() {
   const { t } = useTranslation();
   const featuredSpecies = speciesList.filter((s) => s.featured);
-  const heroSources = [
+  const heroSources = useMemo(() => [
     mediaUrl('hero-1.mp4'),
     mediaUrl('hero-2.mp4'),
     mediaUrl('hero-3.mp4'),
     mediaUrl('hero-4.mp4'),
-  ];
+  ], []);
   const videoARef = useRef(null);
   const videoBRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(0); // 0=A, 1=B
