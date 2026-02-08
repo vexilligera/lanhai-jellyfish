@@ -7,7 +7,7 @@ import SpeciesCard from '../components/SpeciesCard';
 import './Species.css';
 
 function Species() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [search, setSearch] = useState('');
 
   const filtered = useMemo(() => {
@@ -24,10 +24,11 @@ function Species() {
   return (
     <div className="species-page">
       <Helmet>
-        <title>{t('speciesPage.title')} — LanHai Jellyfish</title>
-        <meta name="description" content="Browse our catalog of captive-bred jellyfish species. Moon jellyfish, sea nettles, spotted jellyfish and more. Over 30 species available." />
-        <meta property="og:title" content="Jellyfish Species — LanHai Jellyfish" />
-        <meta property="og:description" content="Browse over 30 captive-bred jellyfish species available for aquariums, research, and exhibitions." />
+        <html lang={i18n.language} />
+        <title>{t('seo.speciesTitle')}</title>
+        <meta name="description" content={t('seo.speciesDesc')} />
+        <meta property="og:title" content={t('seo.speciesTitle')} />
+        <meta property="og:description" content={t('seo.speciesDesc')} />
       </Helmet>
       <section className="species-page__hero">
         <div className="container">

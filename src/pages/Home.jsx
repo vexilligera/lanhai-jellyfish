@@ -8,7 +8,7 @@ import SpeciesCard from '../components/SpeciesCard';
 import './Home.css';
 
 function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const featuredSpecies = speciesList.filter((s) => s.featured);
   const heroSources = useMemo(() => [
     mediaUrl('hero-1.mp4'),
@@ -89,10 +89,11 @@ function Home() {
   return (
     <div className="home">
       <Helmet>
-        <title>LanHai Jellyfish — {t('about.title')}</title>
-        <meta name="description" content="LanHai Jellyfish - Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions. Backed by LanHai Marine since 1978." />
-        <meta property="og:title" content="LanHai Jellyfish — Premium Live Jellyfish" />
-        <meta property="og:description" content="Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions." />
+        <html lang={i18n.language} />
+        <title>{t('seo.homeTitle')}</title>
+        <meta name="description" content={t('seo.homeDesc')} />
+        <meta property="og:title" content={t('seo.homeTitle')} />
+        <meta property="og:description" content={t('seo.ogDesc')} />
         <meta property="og:type" content="website" />
       </Helmet>
       {/* Hero Section */}

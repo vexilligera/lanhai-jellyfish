@@ -8,7 +8,7 @@ import './SpeciesDetail.css';
 
 function SpeciesDetail() {
   const { id } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedImage, setSelectedImage] = useState(0);
   const species = speciesList.find((s) => s.id === id);
 
@@ -31,6 +31,7 @@ function SpeciesDetail() {
   return (
     <div className="detail">
       <Helmet>
+        <html lang={i18n.language} />
         <title>{name} ({scientificName}) — LanHai Jellyfish</title>
         <meta name="description" content={t(`species.${species.id}.shortDescription`)} />
         <meta property="og:title" content={`${name} — LanHai Jellyfish`} />

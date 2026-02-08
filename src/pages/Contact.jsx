@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import './Contact.css';
 
 function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -37,10 +37,11 @@ function Contact() {
   return (
     <div className="contact-page">
       <Helmet>
-        <title>{t('contact.title')} — LanHai Jellyfish</title>
-        <meta name="description" content="Contact LanHai Jellyfish for pricing, bulk orders, and custom breeding. Email, WhatsApp, and TikTok available." />
-        <meta property="og:title" content="Contact Us — LanHai Jellyfish" />
-        <meta property="og:description" content="Get in touch for pricing, bulk orders, and custom jellyfish breeding requests." />
+        <html lang={i18n.language} />
+        <title>{t('seo.contactTitle')}</title>
+        <meta name="description" content={t('seo.contactDesc')} />
+        <meta property="og:title" content={t('seo.contactTitle')} />
+        <meta property="og:description" content={t('seo.contactDesc')} />
       </Helmet>
       <section className="contact-page__hero">
         <div className="container">

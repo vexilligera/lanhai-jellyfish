@@ -1,4 +1,13 @@
 {
+  "seo": {
+    "homeTitle": "LanHai Jellyfish — Premium Live Jellyfish",
+    "homeDesc": "LanHai Jellyfish - Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions. Backed by LanHai Marine since 1978.",
+    "speciesTitle": "Jellyfish Species — LanHai Jellyfish",
+    "speciesDesc": "Browse our catalog of captive-bred jellyfish species. Moon jellyfish, sea nettles, spotted jellyfish and more. Over 30 species available.",
+    "contactTitle": "Contact Us — LanHai Jellyfish",
+    "contactDesc": "Contact LanHai Jellyfish for pricing, bulk orders, and custom breeding. Email, WhatsApp, and TikTok available.",
+    "ogDesc": "Asia's largest jellyfish supplier. Over 30 lab-bred species for aquariums, research, and exhibitions."
+  },
   "nav": {
     "home": "Home",
     "species": "Species",
