@@ -219,28 +219,6 @@ function Contact() {
               </a>
             </div>
 
-            <div className="contact-page__info-card">
-              <h3>{t('contact.businessHours')}</h3>
-              <p>{t('contact.businessDays')}</p>
-              <p>{t('contact.businessTime')}</p>
-            </div>
-
-            <div className="contact-page__info-card">
-              <h3>{t('contact.whatWeOffer')}</h3>
-              <ul>
-                <li>{t('contact.offer1')}</li>
-                <li>{t('contact.offer2')}</li>
-                <li>{t('contact.offer3')}</li>
-                <li>{t('contact.offer4')}</li>
-                <li>{t('contact.offer5')}</li>
-                <li>{t('contact.offer6')}</li>
-              </ul>
-            </div>
-
-            <div className="contact-page__info-card contact-page__info-card--highlight">
-              <h3>{t('contact.bulkOrders')}</h3>
-              <p>{t('contact.bulkText')}</p>
-            </div>
 
             <div className="contact-page__info-card">
               <h3>{t('contact.aboutLanhai')}</h3>
